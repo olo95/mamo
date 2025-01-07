@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b446cc2-b067-48d4-a96f-ea49302ad227" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/sequence_diagram.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/system_diagram.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/data/user/repository/user_repository_impl.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/user/repository/user_repository_impl.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/presentation/pages/dashboard/dashboard_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/pages/dashboard/dashboard_page.dart" afterDir="false" />
-    </list>
+    <list default="true" id="5b446cc2-b067-48d4-a96f-ea49302ad227" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
