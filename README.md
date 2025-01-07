@@ -22,15 +22,6 @@ dart run build_runner build --delete-conflicting-outputs
 
 ![sequence_diagram.png](sequence_diagram.png)
 
-### Database schema
-+------------------+        +--------------------+
-|     USERS        |        |    TRANSACTIONS    |
-+------------------+        +--------------------+
-| id (PK)          |<---+---| sender (FK)       |
-| name             |    |   | receiver (FK)     |
-| balance          |    +---| amount            |
-+------------------+        +--------------------+
-
 ## External dependencies
 
 - **go_router** for navigation
