@@ -1,18 +1,54 @@
+import 'package:mamo/data/firestore/data_source/firestore_data_source.dart';
+import 'package:mamo/data/transaction/model/transaction_dto.dart';
 import 'package:mamo/domain/base/mamo_exception.dart';
 import 'package:mamo/domain/base/result.dart';
 import 'package:mamo/domain/transaction/model/transaction.dart';
 import 'package:mamo/domain/transaction/repository/transaction_repository.dart';
+import 'package:mamo/domain/user/model/user.dart';
+import 'package:mamo/domain/user/repository/user_repository.dart';
 
 class TransactionRepositoryImpl implements TransactionRepository {
+  final UserRepository userRepository;
+  final FirestoreDataSource firestoreDataSource;
+
+  TransactionRepositoryImpl({
+    required this.userRepository,
+    required this.firestoreDataSource,
+  });
+
   @override
   Future<Result<Transaction, MamoException>> createTransaction(Transaction transaction) {
-    // TODO: implement createTransation
     throw UnimplementedError();
   }
 
   @override
-  Future<Result<List<Transaction>, MamoException>> getTransactions() {
-    // TODO: implement getTransactions
-    throw UnimplementedError();
+  Future<Result<List<Transaction>, MamoException>> getUserTransactions() async {
+    try {
+      final Result<User, MamoException> loggedInUserResult = await userRepository.getLoggedInUser();
+      final List<Map<String, dynamic>> transactionsResult = await firestoreDataSource.getTransactions();
+
+      switch (loggedInUserResult) {
+        case Success(value: User user):
+          final List<TransactionDto> transactionDtoList = transactionsResult
+              .map(
+                TransactionDto.fromJson,
+              )
+              .toList()
+              .where((transactionDto) => transactionDto.sender == user.id || transactionDto.receiver == user.id)
+              .toList();
+
+          final List<Transaction> transactionList = transactionDtoList
+              .map(
+                (transactionDto) => transactionDto.toDomain(),
+              )
+              .toList();
+
+          return Success(transactionList);
+        case Failure(error: MamoException e):
+          return Failure(e);
+      }
+    } catch (e) {
+      return Failure(MamoGenericException(message: e.toString()));
+    }
   }
 }

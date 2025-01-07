@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "18398146893",
+    "project_id": "mamo-9fa7a",
+    "storage_bucket": "mamo-9fa7a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:18398146893:android:42a06866b051033c538704",
+        "android_client_info": {
+          "package_name": "com.mamo.mamo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0Fe8siw94eIs6uyPbpGnDbxOz-EY9U8k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

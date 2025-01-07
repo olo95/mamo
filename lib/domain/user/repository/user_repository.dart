@@ -4,5 +4,5 @@ import 'package:mamo/domain/user/model/user.dart';
 
 abstract interface class UserRepository {
   Future<Result<List<User>, MamoException>> getUsers();
-  Future<Result<User, MamoException>> getUser();
+  Future<Result<User, MamoException>> getLoggedInUser();
 }

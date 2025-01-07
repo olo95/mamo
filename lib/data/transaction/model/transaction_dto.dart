@@ -1,3 +1,5 @@
+import 'package:mamo/domain/transaction/model/transaction.dart';
+
 class TransactionDto {
   final String sender;
   final String receiver;
@@ -20,4 +22,10 @@ class TransactionDto {
         'receiver': receiver,
         'amount': amount,
       };
+
+  Transaction toDomain() => Transaction(
+        sender: sender,
+        receiver: receiver,
+        amount: amount,
+      );
 }

@@ -5,5 +5,5 @@ import 'package:mamo/domain/transaction/model/transaction.dart';
 abstract interface class TransactionRepository {
   Future<Result<Transaction, MamoException>> createTransaction(Transaction transaction);
 
-  Future<Result<List<Transaction>, MamoException>> getTransactions();
+  Future<Result<List<Transaction>, MamoException>> getUserTransactions();
 }
