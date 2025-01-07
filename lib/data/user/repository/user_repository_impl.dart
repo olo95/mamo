@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mamo/data/firestore/data_source/firestore_data_source.dart';
 import 'package:mamo/data/user/model/user_dto.dart';
 import 'package:mamo/domain/base/mamo_exception.dart';

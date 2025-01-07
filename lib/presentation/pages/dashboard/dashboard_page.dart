@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mamo/domain/base/buildable_state.dart';
 import 'package:mamo/domain/base/listenable_state.dart';
-import 'package:mamo/domain/user/model/user.dart';
 import 'package:mamo/presentation/pages/dashboard/state_management/dashboard_cubit.dart';
 import 'package:mamo/presentation/pages/dashboard/state_management/dashboard_state.dart';
 import 'package:mamo/presentation/pages/dashboard/widgets/dashboard_loaded.dart';
