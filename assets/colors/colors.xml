@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary color (brand or accent color) -->
+    <color name="primary">#FF2500FE</color>
+
+    <!-- Tertiary color (complementary or success) -->
+    <color name="tertiary">#FF009688</color> <!-- Complementary to primary, teal -->
+
+    <!-- Surface color (background primary) -->
+    <color name="surface">#FFFFFFFF</color> <!-- White background -->
+
+    <!-- Error color -->
+    <color name="error">#FFB00020</color> <!-- Material 3 default error red -->
+
+    <!-- On primary color -->
+    <color name="on_primary">#FFFFFFFF</color> <!-- White for text/icons on primary -->
+
+    <!-- On secondary color -->
+    <color name="on_secondary">#FFFFFFFF</color> <!-- White for text/icons on secondary -->
+
+    <!-- On surface color -->
+    <color name="on_surface">#FF000000</color> <!-- Black for text/icons on surface -->
+
+    <!-- On error color -->
+    <color name="on_error">#FFFFFFFF</color> <!-- White for text/icons on error -->
+</resources>
