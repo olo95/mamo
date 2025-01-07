@@ -14,7 +14,7 @@ class TransactionDto {
   static TransactionDto fromJson(Map<String, dynamic> json) => TransactionDto(
         sender: json['sender'] as String,
         receiver: json['receiver'] as String,
-        amount: json['amount'] as double,
+        amount: double.parse(json['amount'] as String),
       );
 
   Map<String, dynamic> toJson() => {

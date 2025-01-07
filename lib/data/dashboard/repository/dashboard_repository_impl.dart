@@ -31,7 +31,7 @@ class DashboardRepositoryImpl implements DashboardRepository {
               case Success(value: List<Transaction> userTransactions):
                 List<User> frequentUsers = getFiveFrequentUsersFromTransactions(
                   userTransactions: userTransactions,
-                  allUsers: allUsers,
+                  allUsers: allUsers..removeWhere((user) => user.id == loggedInUser.id),
                   userId: loggedInUser.id,
                 );
 
@@ -80,7 +80,7 @@ class DashboardRepositoryImpl implements DashboardRepository {
       }
     }).toList();
 
-    List<User> frequentUsers = userPerTransaction.where((user) => user != null).toList() as List<User>;
+    List<User> frequentUsers = userPerTransaction.where((user) => user != null).map((user) => user!).toList();
 
     Map<User, int> userTransactionCount = {};
 
@@ -94,6 +94,6 @@ class DashboardRepositoryImpl implements DashboardRepository {
 
     userTransactionCount.entries.toList().sort((a, b) => b.value.compareTo(a.value));
 
-    return userTransactionCount.keys.toList().sublist(0, 5);
+    return userTransactionCount.keys.toList().take(5).toList();
   }
 }

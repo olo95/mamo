@@ -13,7 +13,7 @@ class UserDto {
       UserDto(
         id: json['id'] as String,
         name: json['name'] as String,
-        balance: (json['balance'] as num).toDouble(),
+        balance: double.parse(json['balance'] as String),
       );
 
   User toDomain() => User(

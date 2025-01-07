@@ -16,7 +16,7 @@ class FirestoreDataSource {
       );
 
   Future<Map<String, dynamic>> getLoggedInUser() =>
-      firestore.collection(FirestoreCollections.transactions).doc(loggedInUserId).get().then(
+      firestore.collection(FirestoreCollections.users).doc(loggedInUserId).get().then(
             (doc) => doc.data()!,
           );
 
