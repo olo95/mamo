@@ -56,22 +56,20 @@ class TransferRouteArguments {
 }
 
 class TransferConfirmRoute extends GoRouteData {
-  final TransferConfirmRouteArguments? $extra;
+  final String? receiverId;
+  final String? receiverName;
+  final double? amountToSend;
 
-  TransferConfirmRoute({required this.$extra});
+  TransferConfirmRoute({
+    required this.receiverId,
+    required this.receiverName,
+    required this.amountToSend,
+  });
 
   @override
   Widget build(BuildContext context, GoRouterState state) => TransferConfirmPageBuilder(
-        transferConfirmRouteArguments: $extra!,
+        receiverId: receiverId!,
+        receiverName: receiverName!,
+        amountToSend: amountToSend!,
       );
-}
-
-class TransferConfirmRouteArguments {
-  final User receiver;
-  final double amountToSend;
-
-  TransferConfirmRouteArguments({
-    required this.receiver,
-    required this.amountToSend,
-  });
 }

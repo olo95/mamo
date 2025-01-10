@@ -62,10 +62,9 @@ class _TransferPageState extends State<TransferPage> {
           listener: (context, state) {
             if (state is TransferProceedState) {
               TransferConfirmRoute(
-                $extra: TransferConfirmRouteArguments(
-                  receiver: state.receiver,
+                  receiverId: state.receiverId,
+                  receiverName: state.receiverName,
                   amountToSend: state.amountToSend,
-                ),
               ).push(context);
             }
           },

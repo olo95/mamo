@@ -1,6 +1,5 @@
 import 'package:mamo/domain/base/buildable_state.dart';
 import 'package:mamo/domain/base/listenable_state.dart';
-import 'package:mamo/domain/user/model/user.dart';
 
 enum TransferLoadedStateVariant {
   emptyState,
@@ -25,11 +24,13 @@ class TransferLoadedState extends TransferState implements BuildableState {
 }
 
 class TransferProceedState extends TransferState implements ListenableState {
-  final User receiver;
+  final String receiverId;
+  final String receiverName;
   final double amountToSend;
 
   TransferProceedState({
-    required this.receiver,
+    required this.receiverId,
+    required this.receiverName,
     required this.amountToSend,
   });
 }

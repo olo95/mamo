@@ -17,11 +17,30 @@ class TransactionRepositoryImpl implements TransactionRepository {
   });
 
   @override
-  Future<Result<Transaction, MamoException>> createUserSendTransaction(
-      {required String receiverId, required double amountToSend}) {
-    try {} catch (e) {}
+  Future<Result<void, MamoException>> createUserSendTransaction({
+    required String receiverId,
+    required double amountToSend,
+  }) async {
+    try {
+      final Result<User, MamoException> loggedInUserResult = await userRepository.getLoggedInUser();
 
-    throw UnimplementedError();
+      switch (loggedInUserResult) {
+        case Success(value: User user):
+          final TransactionDto transactionDto = TransactionDto(
+            sender: user.id,
+            receiver: receiverId,
+            amount: amountToSend,
+          );
+
+          await firestoreDataSource.createTransaction(transactionDto);
+
+          return Success(null);
+        case Failure(error: MamoException e):
+          return Failure(e);
+      }
+    } catch (e) {
+      return Failure(MamoGenericException(message: e.toString()));
+    }
   }
 
   @override

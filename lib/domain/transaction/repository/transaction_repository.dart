@@ -3,7 +3,7 @@ import 'package:mamo/domain/base/result.dart';
 import 'package:mamo/domain/transaction/model/transaction.dart';
 
 abstract interface class TransactionRepository {
-  Future<Result<Transaction, MamoException>> createUserSendTransaction({
+  Future<Result<void, MamoException>> createUserSendTransaction({
     required String receiverId,
     required double amountToSend,
   });

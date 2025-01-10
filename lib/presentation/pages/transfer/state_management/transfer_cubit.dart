@@ -41,8 +41,15 @@ final class TransferCubit extends Cubit<TransferState> {
   }
 
   void proceedWithTransaction() {
-    if (state is TransferLoadedState && (state as TransferLoadedState).stateVariant == TransferLoadedStateVariant.validState) {
-      // Proceed with transaction
+    if (state is TransferLoadedState &&
+        (state as TransferLoadedState).stateVariant == TransferLoadedStateVariant.validState) {
+      emit(
+        TransferProceedState(
+          receiverId: receiver.id,
+          receiverName: receiver.name,
+          amountToSend: amountToSend,
+        ),
+      );
     }
   }
 }

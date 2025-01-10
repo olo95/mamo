@@ -34,7 +34,14 @@ class _TransferLoadedState extends State<TransferLoaded> {
               'Balance',
               style: DefaultTextStyle.of(context).style.copyWith(color: MamoColors.onSurface.withAlpha(150)),
             ),
-            Text(widget.currentBalance.toString()),
+            Text(
+              widget.currentBalance.toString(),
+              style: DefaultTextStyle.of(context).style.copyWith(
+                    color: widget.stateVariant == TransferLoadedStateVariant.unsufficentBalanceState
+                        ? MamoColors.error
+                        : MamoColors.onSurface,
+                  ),
+            ),
             Spacer(),
             TextField(
               keyboardType: TextInputType.numberWithOptions(
