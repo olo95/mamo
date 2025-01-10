@@ -7,6 +7,7 @@ import 'package:mamo/domain/dashboard/repository/dashboard_repository.dart';
 import 'package:mamo/domain/transaction/repository/transaction_repository.dart';
 import 'package:mamo/domain/user/repository/user_repository.dart';
 import 'package:mamo/presentation/pages/dashboard/state_management/dashboard_cubit.dart';
+import 'package:mamo/presentation/pages/transfer/state_management/transfer_cubit.dart';
 
 class AppContainer {
   // Data sources
@@ -25,4 +26,5 @@ class AppContainer {
 
   // Cubits
   DashboardCubit get dashboardCubit => DashboardCubit(dashboardRepository);
+  TransferCubit get transferCubit => TransferCubit();
 }

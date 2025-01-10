@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mamo/presentation/routing/routes.dart';
+import 'package:mamo/presentation/widgets/mamo_loader.dart';
 
 class OnboardingPage extends StatelessWidget {
   const OnboardingPage({super.key});
@@ -45,5 +46,5 @@ class _ImageLoading extends StatelessWidget {
   const _ImageLoading();
 
   @override
-  Widget build(BuildContext context) => Center(child: const CircularProgressIndicator());
+  Widget build(BuildContext context) => const MamoLoader();
 }

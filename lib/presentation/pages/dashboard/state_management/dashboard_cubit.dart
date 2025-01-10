@@ -7,7 +7,7 @@ import 'package:mamo/domain/dashboard/repository/dashboard_repository.dart';
 import 'package:mamo/domain/user/model/user.dart';
 import 'package:mamo/presentation/pages/dashboard/state_management/dashboard_state.dart';
 
-class DashboardCubit extends Cubit<DashboardState> {
+final class DashboardCubit extends Cubit<DashboardState> {
   final DashboardRepository _dashboardRepository;
 
   DashboardCubit(this._dashboardRepository)
