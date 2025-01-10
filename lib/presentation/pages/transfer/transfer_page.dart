@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mamo/domain/base/buildable_state.dart';
 import 'package:mamo/domain/base/listenable_state.dart';
+import 'package:mamo/domain/base/money.dart';
 import 'package:mamo/domain/user/model/user.dart';
 import 'package:mamo/presentation/pages/transfer/state_management/transfer_cubit.dart';
 import 'package:mamo/presentation/pages/transfer/state_management/transfer_state.dart';
@@ -13,7 +14,7 @@ import 'package:mamo/presentation/widgets/mamo_loader.dart';
 class TransferPage extends StatefulWidget {
   final TransferCubit transferCubit;
   final User receiver;
-  final double currentBalance;
+  final int currentBalance;
 
   const TransferPage({
     required this.transferCubit,
@@ -49,7 +50,7 @@ class _TransferPageState extends State<TransferPage> {
             TransferInitialState() => const MamoLoader(),
             TransferLoadingState() => const MamoLoader(),
             TransferLoadedState(
-              currentBalance: double currentBalance,
+              currentBalance: Money currentBalance,
               stateVariant: TransferLoadedStateVariant stateVariant,
             ) =>
               TransferLoaded(

@@ -1,5 +1,6 @@
 import 'package:mamo/domain/base/buildable_state.dart';
 import 'package:mamo/domain/base/listenable_state.dart';
+import 'package:mamo/domain/base/money.dart';
 
 enum TransferLoadedStateVariant {
   emptyState,
@@ -14,7 +15,7 @@ class TransferInitialState extends TransferState implements BuildableState {}
 class TransferLoadingState extends TransferState implements BuildableState {}
 
 class TransferLoadedState extends TransferState implements BuildableState {
-  final double currentBalance;
+  final Money currentBalance;
   final TransferLoadedStateVariant stateVariant;
 
   TransferLoadedState({
@@ -26,7 +27,7 @@ class TransferLoadedState extends TransferState implements BuildableState {
 class TransferProceedState extends TransferState implements ListenableState {
   final String receiverId;
   final String receiverName;
-  final double amountToSend;
+  final int amountToSend;
 
   TransferProceedState({
     required this.receiverId,

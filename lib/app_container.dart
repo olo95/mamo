@@ -33,7 +33,7 @@ class AppContainer {
   TransferConfirmCubit transferConfirmCubit({
     required String receiverId,
     required String receiverName,
-    required double amountToSend,
+    required int amountToSend,
   }) =>
       TransferConfirmCubit(
         receiverId: receiverId,

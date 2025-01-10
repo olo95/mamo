@@ -1,7 +1,7 @@
 class Transaction {
   final String senderId;
   final String receiverId;
-  final double amount;
+  final int amount;
   final DateTime createdAt;
 
   Transaction({

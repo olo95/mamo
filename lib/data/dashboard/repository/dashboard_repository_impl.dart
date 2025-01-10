@@ -1,4 +1,5 @@
 import 'package:mamo/domain/base/mamo_exception.dart';
+import 'package:mamo/domain/base/money.dart';
 import 'package:mamo/domain/base/result.dart';
 import 'package:mamo/domain/dashboard/model/dashboard_data.dart';
 import 'package:mamo/domain/dashboard/model/transaction_details.dart';
@@ -52,7 +53,7 @@ class DashboardRepositoryImpl implements DashboardRepository {
                   return TransactionDetails(
                     senderName: senderName,
                     receiverName: receiverName,
-                    amount: transaction.amount,
+                    amount: Money(amount: transaction.amount),
                   );
                 }).toList();
 

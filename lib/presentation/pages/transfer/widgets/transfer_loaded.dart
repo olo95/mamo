@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mamo/domain/base/money.dart';
 import 'package:mamo/presentation/pages/transfer/state_management/transfer_state.dart';
 import 'package:mamo/presentation/style/dimens.dart';
 import 'package:mamo/presentation/style/generated/colors.gen.dart';
 
 class TransferLoaded extends StatefulWidget {
-  final double currentBalance;
+  final Money currentBalance;
   final TransferLoadedStateVariant stateVariant;
 
   final ValueChanged<String> onSelectedAmountChanged;
@@ -35,7 +36,7 @@ class _TransferLoadedState extends State<TransferLoaded> {
               style: DefaultTextStyle.of(context).style.copyWith(color: MamoColors.onSurface.withAlpha(150)),
             ),
             Text(
-              widget.currentBalance.toString(),
+              widget.currentBalance.amountFormatted,
               style: DefaultTextStyle.of(context).style.copyWith(
                     color: widget.stateVariant == TransferLoadedStateVariant.unsufficentBalanceState
                         ? MamoColors.error

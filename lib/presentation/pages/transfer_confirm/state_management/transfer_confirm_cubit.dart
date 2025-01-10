@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mamo/domain/base/mamo_exception.dart';
+import 'package:mamo/domain/base/money.dart';
 import 'package:mamo/domain/base/result.dart';
 import 'package:mamo/domain/transaction/repository/transaction_repository.dart';
 import 'package:mamo/presentation/pages/transfer_confirm/state_management/transfer_confirm_state.dart';
@@ -7,7 +8,7 @@ import 'package:mamo/presentation/pages/transfer_confirm/state_management/transf
 final class TransferConfirmCubit extends Cubit<TransferConfirmState> {
   final String receiverId;
   final String receiverName;
-  final double amountToSend;
+  final int amountToSend;
 
   final TransactionRepository transactionRepository;
 
@@ -19,7 +20,7 @@ final class TransferConfirmCubit extends Cubit<TransferConfirmState> {
   }) : super(
           TransferConfirmInitialState(
             receiverName: receiverName,
-            amountToSend: 'AED $amountToSend',
+            amountToSend: Money(amount: amountToSend).amountFormatted,
           ),
         );
 
@@ -41,7 +42,17 @@ final class TransferConfirmCubit extends Cubit<TransferConfirmState> {
     }
   }
 
-  void _emitInitialState() => emit(TransferConfirmInitialState(receiverName: receiverName, amountToSend: 'AED $amountToSend'));
+  void _emitInitialState() => emit(
+        TransferConfirmInitialState(
+          receiverName: receiverName,
+          amountToSend: Money(amount: amountToSend).amountFormatted,
+        ),
+      );
 
-  void _emitLoadingState() => emit(TransferConfirmLoadingState(receiverName: receiverName, amountToSend: 'AED $amountToSend'));
+  void _emitLoadingState() => emit(
+        TransferConfirmLoadingState(
+          receiverName: receiverName,
+          amountToSend: Money(amount: amountToSend).amountFormatted,
+        ),
+      );
 }

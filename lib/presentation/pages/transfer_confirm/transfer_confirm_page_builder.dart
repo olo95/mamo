@@ -7,7 +7,7 @@ import 'package:mamo/presentation/pages/transfer_confirm/transfer_confirm_page.d
 class TransferConfirmPageBuilder extends StatelessWidget {
   final String receiverId;
   final String receiverName;
-  final double amountToSend;
+  final int amountToSend;
 
   const TransferConfirmPageBuilder({
     required this.receiverId,

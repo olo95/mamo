@@ -1,9 +1,9 @@
-import 'package:mamo/domain/transaction/model/transaction.dart';
+import 'package:mamo/domain/base/money.dart';
 
 class TransactionDetails {
   final String? senderName;
   final String? receiverName;
-  final double amount;
+  final Money amount;
 
   TransactionDetails({
     required this.senderName,

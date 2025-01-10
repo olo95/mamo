@@ -74,7 +74,7 @@ class DashboardLoaded extends StatelessWidget {
                         itemCount: recentTransactions.length,
                         itemBuilder: (context, index) => _DashboardTile(
                           title:
-                              '${recentTransactions[index].senderName} -> ${recentTransactions[index].amount} AED -> ${recentTransactions[index].receiverName}',
+                              '${recentTransactions[index].senderName} -> ${recentTransactions[index].amount.amountFormatted} -> ${recentTransactions[index].receiverName}',
                           onTap: () {},
                         ),
                         separatorBuilder: (context, index) => SizedBox(height: Dimens.s),

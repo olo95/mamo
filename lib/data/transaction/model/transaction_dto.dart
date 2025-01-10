@@ -4,7 +4,7 @@ import 'package:mamo/domain/transaction/model/transaction.dart';
 class TransactionDto {
   final String sender;
   final String receiver;
-  final double amount;
+  final int amount;
   final firestore.Timestamp createdAt;
 
   TransactionDto({
@@ -17,14 +17,14 @@ class TransactionDto {
   static TransactionDto fromJson(Map<String, dynamic> json) => TransactionDto(
         sender: json['sender'] as String,
         receiver: json['receiver'] as String,
-        amount: double.parse(json['amount'] as String),
+        amount: json['amount'] as int,
         createdAt: json['createdAt'] as firestore.Timestamp,
       );
 
   Map<String, dynamic> toJson() => {
         'sender': sender,
         'receiver': receiver,
-        'amount': amount.toString(),
+        'amount': amount,
         'createdAt': createdAt,
       };
 

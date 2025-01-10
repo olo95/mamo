@@ -3,7 +3,7 @@ import 'package:mamo/domain/user/model/user.dart';
 class UserDto {
   final String id;
   final String name;
-  final double balance;
+  final int balance;
 
   UserDto({required this.id, required this.name, required this.balance});
 
@@ -13,7 +13,7 @@ class UserDto {
       UserDto(
         id: json['id'] as String,
         name: json['name'] as String,
-        balance: double.parse(json['balance'] as String),
+        balance: json['balance'] as int,
       );
 
   User toDomain() => User(

@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class NewTransactionDto {
   final String sender;
   final String receiver;
-  final double amount;
+  final int amount;
   final FieldValue createdAt;
 
   NewTransactionDto({
@@ -16,7 +16,7 @@ class NewTransactionDto {
   Map<String, dynamic> toJson() => {
     'sender': sender,
     'receiver': receiver,
-    'amount': amount.toString(),
+    'amount': amount,
     'createdAt': createdAt,
   };
 }

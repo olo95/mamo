@@ -41,13 +41,13 @@ class FirestoreDataSource {
       final senderSnapshot = await transaction.get(senderDoc);
       final receiverSnapshot = await transaction.get(receiverDoc);
 
-      final double senderBalance = double.parse( senderSnapshot.get('balance') as String);
-      final double receiverBalance = double.parse(receiverSnapshot.get('balance') as String);
-      final double senderBalanceAfterTransaction = senderBalance - transactionDto.amount;
-      final double receiverBalanceAfterTransaction = receiverBalance + transactionDto.amount;
+      final int senderBalance = senderSnapshot.get('balance') as int;
+      final int receiverBalance = receiverSnapshot.get('balance') as int;
+      final int senderBalanceAfterTransaction = senderBalance - transactionDto.amount;
+      final int receiverBalanceAfterTransaction = receiverBalance + transactionDto.amount;
 
-      transaction.update(senderDoc, {'balance': senderBalanceAfterTransaction.toString()});
-      transaction.update(receiverDoc, {'balance': receiverBalanceAfterTransaction.toString()});
+      transaction.update(senderDoc, {'balance': senderBalanceAfterTransaction});
+      transaction.update(receiverDoc, {'balance': receiverBalanceAfterTransaction});
 
       transaction.set(transactionCollection.doc(), transactionDto.toJson());
     });

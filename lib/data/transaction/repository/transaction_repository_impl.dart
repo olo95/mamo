@@ -21,7 +21,7 @@ class TransactionRepositoryImpl implements TransactionRepository {
   @override
   Future<Result<void, MamoException>> createUserSendTransaction({
     required String receiverId,
-    required double amountToSend,
+    required int amountToSend,
   }) async {
     try {
       final Result<User, MamoException> loggedInUserResult = await userRepository.getLoggedInUser();

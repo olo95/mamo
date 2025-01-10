@@ -47,7 +47,7 @@ class TransferRoute extends GoRouteData {
 
 class TransferRouteArguments {
   final User receiver;
-  final double currentBalance;
+  final int currentBalance;
 
   TransferRouteArguments({
     required this.receiver,
@@ -58,7 +58,7 @@ class TransferRouteArguments {
 class TransferConfirmRoute extends GoRouteData {
   final String? receiverId;
   final String? receiverName;
-  final double? amountToSend;
+  final int? amountToSend;
 
   TransferConfirmRoute({
     required this.receiverId,
