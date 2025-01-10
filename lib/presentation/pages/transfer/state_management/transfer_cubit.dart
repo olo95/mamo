@@ -8,6 +8,8 @@ final class TransferCubit extends Cubit<TransferState> {
   late final User receiver;
   late final double currentBalance;
 
+  double amountToSend = 0;
+
   void init({required User receiver, required double currentBalance}) {
     this.receiver = receiver;
     this.currentBalance = currentBalance;
@@ -15,7 +17,7 @@ final class TransferCubit extends Cubit<TransferState> {
     emit(
       TransferLoadedState(
         currentBalance: currentBalance,
-        stateVariant: TransferLoadedStateVariant.defaultState,
+        stateVariant: TransferLoadedStateVariant.emptyState,
       ),
     );
   }
@@ -26,7 +28,9 @@ final class TransferCubit extends Cubit<TransferState> {
         ? amountValue <= currentBalance
             ? TransferLoadedStateVariant.validState
             : TransferLoadedStateVariant.unsufficentBalanceState
-        : TransferLoadedStateVariant.defaultState;
+        : TransferLoadedStateVariant.emptyState;
+
+    amountToSend = amountValue;
 
     emit(
       TransferLoadedState(
@@ -34,5 +38,11 @@ final class TransferCubit extends Cubit<TransferState> {
         stateVariant: stateVariant,
       ),
     );
+  }
+
+  void proceedWithTransaction() {
+    if (state is TransferLoadedState && (state as TransferLoadedState).stateVariant == TransferLoadedStateVariant.validState) {
+      // Proceed with transaction
+    }
   }
 }

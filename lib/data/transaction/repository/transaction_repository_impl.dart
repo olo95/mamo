@@ -17,7 +17,10 @@ class TransactionRepositoryImpl implements TransactionRepository {
   });
 
   @override
-  Future<Result<Transaction, MamoException>> createTransaction(Transaction transaction) {
+  Future<Result<Transaction, MamoException>> createUserSendTransaction(
+      {required String receiverId, required double amountToSend}) {
+    try {} catch (e) {}
+
     throw UnimplementedError();
   }
 

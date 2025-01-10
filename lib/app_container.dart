@@ -5,9 +5,11 @@ import 'package:mamo/data/transaction/repository/transaction_repository_impl.dar
 import 'package:mamo/data/user/repository/user_repository_impl.dart';
 import 'package:mamo/domain/dashboard/repository/dashboard_repository.dart';
 import 'package:mamo/domain/transaction/repository/transaction_repository.dart';
+import 'package:mamo/domain/user/model/user.dart';
 import 'package:mamo/domain/user/repository/user_repository.dart';
 import 'package:mamo/presentation/pages/dashboard/state_management/dashboard_cubit.dart';
 import 'package:mamo/presentation/pages/transfer/state_management/transfer_cubit.dart';
+import 'package:mamo/presentation/pages/transfer_confirm/state_management/transfer_confirm_cubit.dart';
 
 class AppContainer {
   // Data sources
@@ -26,5 +28,16 @@ class AppContainer {
 
   // Cubits
   DashboardCubit get dashboardCubit => DashboardCubit(dashboardRepository);
+
   TransferCubit get transferCubit => TransferCubit();
+
+  TransferConfirmCubit transferConfirmCubit({
+    required User receiver,
+    required double amountToSend,
+  }) =>
+      TransferConfirmCubit(
+        receiver: receiver,
+        amountToSend: amountToSend,
+        transactionRepository: transactionRepository,
+      );
 }

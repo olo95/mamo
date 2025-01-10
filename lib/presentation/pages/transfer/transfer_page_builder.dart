@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:mamo/presentation/app_container_provider.dart';
 import 'package:mamo/presentation/pages/transfer/state_management/transfer_cubit.dart';
 import 'package:mamo/presentation/pages/transfer/transfer_page.dart';

@@ -4,6 +4,7 @@ import 'package:mamo/domain/user/model/user.dart';
 import 'package:mamo/presentation/pages/dashboard/dashboard_page_builder.dart';
 import 'package:mamo/presentation/pages/onboarding/onboarding_page.dart';
 import 'package:mamo/presentation/pages/transfer/transfer_page_builder.dart';
+import 'package:mamo/presentation/pages/transfer_confirm/transfer_confirm_page_builder.dart';
 import 'package:mamo/presentation/routing/route_paths.dart';
 
 part 'routes.g.dart';
@@ -19,7 +20,14 @@ class OnboardingRoute extends GoRouteData {
 
 @TypedGoRoute<DashboardRoute>(
   path: RoutePaths.dashboard,
-  routes: [TypedGoRoute<TransferRoute>(path: RoutePaths.transfer)],
+  routes: [
+    TypedGoRoute<TransferRoute>(
+      path: RoutePaths.transfer,
+      routes: [
+        TypedGoRoute<TransferConfirmRoute>(path: RoutePaths.transferConfirm),
+      ],
+    ),
+  ],
 )
 class DashboardRoute extends GoRouteData {
   @override
@@ -44,5 +52,26 @@ class TransferRouteArguments {
   TransferRouteArguments({
     required this.receiver,
     required this.currentBalance,
+  });
+}
+
+class TransferConfirmRoute extends GoRouteData {
+  final TransferConfirmRouteArguments? $extra;
+
+  TransferConfirmRoute({required this.$extra});
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) => TransferConfirmPageBuilder(
+        transferConfirmRouteArguments: $extra!,
+      );
+}
+
+class TransferConfirmRouteArguments {
+  final User receiver;
+  final double amountToSend;
+
+  TransferConfirmRouteArguments({
+    required this.receiver,
+    required this.amountToSend,
   });
 }

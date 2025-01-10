@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:mamo/presentation/pages/transfer/state_management/transfer_state.dart';
 import 'package:mamo/presentation/style/dimens.dart';
 import 'package:mamo/presentation/style/generated/colors.gen.dart';
@@ -8,11 +9,13 @@ class TransferLoaded extends StatefulWidget {
   final TransferLoadedStateVariant stateVariant;
 
   final ValueChanged<String> onSelectedAmountChanged;
+  final VoidCallback onNextPressed;
 
   const TransferLoaded({
     required this.currentBalance,
     required this.stateVariant,
     required this.onSelectedAmountChanged,
+    required this.onNextPressed,
     super.key,
   });
 
@@ -34,9 +37,15 @@ class _TransferLoadedState extends State<TransferLoaded> {
             Text(widget.currentBalance.toString()),
             Spacer(),
             TextField(
-              keyboardType: TextInputType.number,
+              keyboardType: TextInputType.numberWithOptions(
+                decimal: true,
+                signed: false,
+              ),
               autofocus: true,
               onChanged: widget.onSelectedAmountChanged,
+              inputFormatters: [
+                FilteringTextInputFormatter.allow(RegExp(r'^\d+(\.\d{0,2})?$')),
+              ],
               decoration: InputDecoration(
                 labelText: 'Enter amount',
                 suffixText: 'AED',
@@ -48,10 +57,14 @@ class _TransferLoadedState extends State<TransferLoaded> {
               children: [
                 Expanded(
                   child: FilledButton(
-                    onPressed: () {},
+                    onPressed: switch (widget.stateVariant) {
+                      TransferLoadedStateVariant.emptyState => null,
+                      TransferLoadedStateVariant.validState => widget.onNextPressed,
+                      TransferLoadedStateVariant.unsufficentBalanceState => null,
+                    },
                     child: Text(
                       switch (widget.stateVariant) {
-                        TransferLoadedStateVariant.defaultState => 'Send',
+                        TransferLoadedStateVariant.emptyState => 'Next',
                         TransferLoadedStateVariant.validState => 'Next',
                         TransferLoadedStateVariant.unsufficentBalanceState => 'Top-up wallet',
                       },
