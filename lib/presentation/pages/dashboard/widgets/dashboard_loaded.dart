@@ -72,12 +72,10 @@ class DashboardLoaded extends StatelessWidget {
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         itemCount: recentTransactions.length,
-                        itemBuilder: (context, index) => Flexible(
-                          child: _DashboardTile(
-                            title:
-                                '${recentTransactions[index].senderName} -> ${recentTransactions[index].amount} AED -> ${recentTransactions[index].receiverName}',
-                            onTap: () {},
-                          ),
+                        itemBuilder: (context, index) => _DashboardTile(
+                          title:
+                              '${recentTransactions[index].senderName} -> ${recentTransactions[index].amount} AED -> ${recentTransactions[index].receiverName}',
+                          onTap: () {},
                         ),
                         separatorBuilder: (context, index) => SizedBox(height: Dimens.s),
                       ),
