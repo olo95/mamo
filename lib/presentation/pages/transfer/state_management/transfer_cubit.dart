@@ -23,7 +23,7 @@ final class TransferCubit extends Cubit<TransferState> {
   }
 
   void onSelectedAmountChanged(String amount) {
-    final double amountValue = double.tryParse(amount) ?? 0;
+    final double amountValue = double.tryParse(amount.replaceAll(',', '.')) ?? 0;
     final TransferLoadedStateVariant stateVariant = amountValue > 0
         ? amountValue <= currentBalance
             ? TransferLoadedStateVariant.validState

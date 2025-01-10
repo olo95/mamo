@@ -5,7 +5,7 @@ sealed class TransferConfirmState {}
 
 class TransferConfirmInitialState extends TransferConfirmState implements BuildableState {
   final String receiverName;
-  final double amountToSend;
+  final String amountToSend;
 
   TransferConfirmInitialState({
     required this.receiverName,
@@ -13,8 +13,16 @@ class TransferConfirmInitialState extends TransferConfirmState implements Builda
   });
 }
 
-class TransferConfirmLoadingState extends TransferConfirmState implements BuildableState {}
+class TransferConfirmLoadingState extends TransferConfirmState implements BuildableState {
+  final String receiverName;
+  final String amountToSend;
+
+  TransferConfirmLoadingState({
+    required this.receiverName,
+    required this.amountToSend,
+  });
+}
 
 class TransferConfirmSuccessState extends TransferConfirmState implements ListenableState {}
 
-class TransferConfirmErrorState extends TransferConfirmState implements BuildableState, ListenableState {}
+class TransferConfirmErrorState extends TransferConfirmState implements ListenableState {}

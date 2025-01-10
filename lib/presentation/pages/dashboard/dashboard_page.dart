@@ -45,7 +45,7 @@ class _DashboardPageState extends State<DashboardPage> {
               currentUser: state.currentUser,
               frequentUsers: state.frequentUsers,
               allUsers: state.allUsers,
-              onUserSelected: (user) async {
+              onUserSelected: (user) {
                 final User? currentUser = state.currentUser;
                 if (currentUser != null) {
                   final TransferRouteArguments routeArguments = TransferRouteArguments(
@@ -53,19 +53,7 @@ class _DashboardPageState extends State<DashboardPage> {
                     currentBalance: currentUser.balance,
                   );
 
-                  final bool? transferResult = await TransferRoute($extra: routeArguments).push(context);
-
-                  if (transferResult != null) {
-                    if (transferResult) {
-                      if (context.mounted) {
-                        ScaffoldMessenger.of(context).showMamoSnackBar('Transfer successful');
-                      }
-                    } else {
-                      if (context.mounted) {
-                        ScaffoldMessenger.of(context).showMamoSnackBar('Transfer failed');
-                      }
-                    }
-                  }
+                  TransferRoute($extra: routeArguments).push(context);
                 }
               },
             ),

@@ -19,12 +19,12 @@ final class TransferConfirmCubit extends Cubit<TransferConfirmState> {
   }) : super(
           TransferConfirmInitialState(
             receiverName: receiverName,
-            amountToSend: amountToSend,
+            amountToSend: 'AED $amountToSend',
           ),
         );
 
   Future<void> sendTransfer() async {
-    emit(TransferConfirmLoadingState());
+    _emitLoadingState();
     final Result<void, MamoException> transactionResult = await transactionRepository.createUserSendTransaction(
       receiverId: receiverId,
       amountToSend: amountToSend,
@@ -36,7 +36,12 @@ final class TransferConfirmCubit extends Cubit<TransferConfirmState> {
         break;
       case Failure(error: MamoException exception):
         emit(TransferConfirmErrorState());
+        _emitInitialState();
         break;
     }
   }
+
+  void _emitInitialState() => emit(TransferConfirmInitialState(receiverName: receiverName, amountToSend: 'AED $amountToSend'));
+
+  void _emitLoadingState() => emit(TransferConfirmLoadingState(receiverName: receiverName, amountToSend: 'AED $amountToSend'));
 }

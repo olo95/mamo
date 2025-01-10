@@ -20,7 +20,7 @@ class TransactionDto {
   Map<String, dynamic> toJson() => {
         'sender': sender,
         'receiver': receiver,
-        'amount': amount,
+        'amount': amount.toString(),
       };
 
   Transaction toDomain() => Transaction(
