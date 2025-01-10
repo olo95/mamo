@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mamo/domain/base/mamo_exception.dart';
 import 'package:mamo/domain/base/result.dart';
 import 'package:mamo/domain/dashboard/model/dashboard_data.dart';
+import 'package:mamo/domain/dashboard/model/transaction_details.dart';
 import 'package:mamo/domain/dashboard/repository/dashboard_repository.dart';
 import 'package:mamo/domain/user/model/user.dart';
 import 'package:mamo/presentation/pages/dashboard/state_management/dashboard_state.dart';
@@ -16,6 +17,7 @@ final class DashboardCubit extends Cubit<DashboardState> {
             currentUser: null,
             frequentUsers: [],
             allUsers: [],
+            recentTransactions: []
           ),
         );
 
@@ -30,6 +32,7 @@ final class DashboardCubit extends Cubit<DashboardState> {
           dashboardData.currentUser,
           dashboardData.frequentUsers,
           dashboardData.allUsers,
+          dashboardData.recentTransactions,
         );
         break;
       case Failure(error: MamoException exception):
@@ -45,6 +48,7 @@ final class DashboardCubit extends Cubit<DashboardState> {
         currentUser: state.currentUser,
         frequentUsers: state.frequentUsers,
         allUsers: state.allUsers,
+        recentTransactions: state.recentTransactions,
       ),
     );
   }
@@ -53,12 +57,14 @@ final class DashboardCubit extends Cubit<DashboardState> {
     User? currentUser,
     List<User> frequentUsers,
     List<User> allUsers,
+      List<TransactionDetails> recentTransactions,
   ) {
     emit(
       DashboardLoadedState(
         currentUser: currentUser,
         frequentUsers: frequentUsers,
         allUsers: allUsers,
+        recentTransactions: recentTransactions,
       ),
     );
   }
@@ -69,6 +75,7 @@ final class DashboardCubit extends Cubit<DashboardState> {
         currentUser: state.currentUser,
         frequentUsers: state.frequentUsers,
         allUsers: state.allUsers,
+        recentTransactions: state.recentTransactions,
       ),
     );
   }

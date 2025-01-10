@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart' as firestore;
 import 'package:mamo/data/firestore/data_source/firestore_data_source.dart';
+import 'package:mamo/data/transaction/model/new_transaction_dto.dart';
 import 'package:mamo/data/transaction/model/transaction_dto.dart';
 import 'package:mamo/domain/base/mamo_exception.dart';
 import 'package:mamo/domain/base/result.dart';
@@ -26,10 +28,11 @@ class TransactionRepositoryImpl implements TransactionRepository {
 
       switch (loggedInUserResult) {
         case Success(value: User user):
-          final TransactionDto transactionDto = TransactionDto(
+          final NewTransactionDto transactionDto = NewTransactionDto(
             sender: user.id,
             receiver: receiverId,
             amount: amountToSend,
+            createdAt: firestore.FieldValue.serverTimestamp(),
           );
 
           await firestoreDataSource.createTransaction(transactionDto);

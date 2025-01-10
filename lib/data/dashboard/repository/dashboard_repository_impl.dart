@@ -1,6 +1,7 @@
 import 'package:mamo/domain/base/mamo_exception.dart';
 import 'package:mamo/domain/base/result.dart';
 import 'package:mamo/domain/dashboard/model/dashboard_data.dart';
+import 'package:mamo/domain/dashboard/model/transaction_details.dart';
 import 'package:mamo/domain/dashboard/repository/dashboard_repository.dart';
 import 'package:mamo/domain/transaction/model/transaction.dart';
 import 'package:mamo/domain/transaction/repository/transaction_repository.dart';
@@ -29,17 +30,38 @@ class DashboardRepositoryImpl implements DashboardRepository {
           case Success(value: List<User> allUsers):
             switch (userTransactionsResult) {
               case Success(value: List<Transaction> userTransactions):
+                final List<User> allUsersWithoutLoggedInUser = List.from(allUsers);
+                allUsersWithoutLoggedInUser.removeWhere((user) => user.id == loggedInUser.id);
+
                 List<User> frequentUsers = getFiveFrequentUsersFromTransactions(
                   userTransactions: userTransactions,
-                  allUsers: allUsers..removeWhere((user) => user.id == loggedInUser.id),
+                  allUsers: allUsersWithoutLoggedInUser,
                   userId: loggedInUser.id,
                 );
+
+                List<MapEntry<String, String>> mapEntriesFromAllUsers =
+                    allUsers.map((user) => MapEntry(user.id, user.name)).toList();
+                Map<String, String> allUsersMap = Map.fromEntries(mapEntriesFromAllUsers);
+
+                userTransactions.sort((a, b) => b.createdAt.compareTo(a.createdAt));
+
+                List<TransactionDetails> recentTransactions = userTransactions.take(5).map((transaction) {
+                  final String? senderName = allUsersMap[transaction.senderId];
+                  final String? receiverName = allUsersMap[transaction.receiverId];
+
+                  return TransactionDetails(
+                    senderName: senderName,
+                    receiverName: receiverName,
+                    amount: transaction.amount,
+                  );
+                }).toList();
 
                 return Success(
                   DashboardData(
                     currentUser: loggedInUser,
                     frequentUsers: frequentUsers,
-                    allUsers: allUsers,
+                    allUsers: allUsersWithoutLoggedInUser,
+                    recentTransactions: recentTransactions,
                   ),
                 );
               case Failure(error: MamoException e):
@@ -59,8 +81,8 @@ class DashboardRepositoryImpl implements DashboardRepository {
     required String userId,
   }) {
     List<User?> userPerTransaction = userTransactions.map((transaction) {
-      if (transaction.sender == userId) {
-        final int userIndexInAllUsers = allUsers.indexWhere((user) => user.id == transaction.receiver);
+      if (transaction.senderId == userId) {
+        final int userIndexInAllUsers = allUsers.indexWhere((user) => user.id == transaction.receiverId);
 
         if (userIndexInAllUsers != -1) {
           return allUsers[userIndexInAllUsers];
@@ -69,8 +91,8 @@ class DashboardRepositoryImpl implements DashboardRepository {
         }
       }
 
-      if (transaction.receiver == userId) {
-        final int userIndexInAllUsers = allUsers.indexWhere((user) => user.id == transaction.sender);
+      if (transaction.receiverId == userId) {
+        final int userIndexInAllUsers = allUsers.indexWhere((user) => user.id == transaction.senderId);
 
         if (userIndexInAllUsers != -1) {
           return allUsers[userIndexInAllUsers];

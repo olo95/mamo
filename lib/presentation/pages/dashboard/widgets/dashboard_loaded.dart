@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mamo/domain/dashboard/model/transaction_details.dart';
 import 'package:mamo/domain/user/model/user.dart';
 import 'package:mamo/presentation/style/dimens.dart';
 import 'package:mamo/presentation/style/generated/colors.gen.dart';
@@ -8,6 +9,7 @@ class DashboardLoaded extends StatelessWidget {
   final User? currentUser;
   final List<User> frequentUsers;
   final List<User> allUsers;
+  final List<TransactionDetails> recentTransactions;
 
   final ValueChanged<User> onUserSelected;
 
@@ -17,6 +19,7 @@ class DashboardLoaded extends StatelessWidget {
     required this.currentUser,
     required this.frequentUsers,
     required this.allUsers,
+    required this.recentTransactions,
     required this.onUserSelected,
   });
 
@@ -61,6 +64,24 @@ class DashboardLoaded extends StatelessWidget {
                           ),
                         ],
                       ),
+                    SizedBox(height: Dimens.l),
+                    if (recentTransactions.isNotEmpty) ...[
+                      Text('Recent transactions'),
+                      SizedBox(height: Dimens.m),
+                      ListView.separated(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: recentTransactions.length,
+                        itemBuilder: (context, index) => Flexible(
+                          child: _DashboardTile(
+                            title:
+                                '${recentTransactions[index].senderName} -> ${recentTransactions[index].amount} AED -> ${recentTransactions[index].receiverName}',
+                            onTap: () {},
+                          ),
+                        ),
+                        separatorBuilder: (context, index) => SizedBox(height: Dimens.s),
+                      ),
+                    ]
                   ],
                 ),
               ),

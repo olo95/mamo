@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mamo/data/firestore/model/firestore_collections.dart';
 import 'package:mamo/data/firestore/model/logged_in_user_id.dart';
+import 'package:mamo/data/transaction/model/new_transaction_dto.dart';
 import 'package:mamo/data/transaction/model/transaction_dto.dart';
 
 class FirestoreDataSource {
@@ -30,7 +31,7 @@ class FirestoreDataSource {
                 .toList(),
           );
 
-  Future<void> createTransaction(TransactionDto transactionDto) async {
+  Future<void> createTransaction(NewTransactionDto transactionDto) async {
     final userCollection = firestore.collection(FirestoreCollections.users);
     final transactionCollection = firestore.collection(FirestoreCollections.transactions);
     final senderDoc = userCollection.doc(transactionDto.sender);

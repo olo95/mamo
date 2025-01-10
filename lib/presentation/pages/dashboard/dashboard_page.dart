@@ -45,6 +45,7 @@ class _DashboardPageState extends State<DashboardPage> {
               currentUser: state.currentUser,
               frequentUsers: state.frequentUsers,
               allUsers: state.allUsers,
+              recentTransactions: state.recentTransactions,
               onUserSelected: (user) {
                 final User? currentUser = state.currentUser;
                 if (currentUser != null) {
@@ -62,6 +63,7 @@ class _DashboardPageState extends State<DashboardPage> {
               currentUser: state.currentUser,
               frequentUsers: state.frequentUsers,
               allUsers: state.allUsers,
+              recentTransactions: state.recentTransactions,
               onUserSelected: (_) {},
             ),
           DashboardErrorState() => DashboardLoaded(
@@ -69,6 +71,7 @@ class _DashboardPageState extends State<DashboardPage> {
               currentUser: state.currentUser,
               frequentUsers: state.frequentUsers,
               allUsers: state.allUsers,
+              recentTransactions: state.recentTransactions,
               onUserSelected: (_) {},
             ),
         },
